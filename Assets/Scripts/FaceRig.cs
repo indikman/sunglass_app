@@ -9,6 +9,8 @@ public class FaceRig : MonoBehaviour
 
     public Material frame, lens, arm_left, arm_right;
 
+    public Renderer frameRend, lensRend, armLRend, armRRend;
+
     
 
     void Start()
@@ -16,7 +18,7 @@ public class FaceRig : MonoBehaviour
         referenceFaceRig = GameObject.FindGameObjectWithTag("FacePrefabManager");
         faceRig = referenceFaceRig.GetComponent<FacePrefabManager>();
 
-        
+        RefreshMaterials();
     }
 
     // Update is called once per frame
@@ -40,5 +42,25 @@ public class FaceRig : MonoBehaviour
         lens = faceRig.lensMat;
         arm_left = faceRig.armMat;
         arm_right = faceRig.armMat;
+
+        if (frame != null)
+        {
+            frameRend.material = frame;
+        }
+
+        if (lens != null)
+        {
+            lensRend.material = lens;
+        }
+
+        if (arm_left != null)
+        {
+            armLRend.material = arm_left;
+        }
+
+        if (arm_right != null)
+        {
+            armRRend.material = arm_right;
+        }
     }
 }

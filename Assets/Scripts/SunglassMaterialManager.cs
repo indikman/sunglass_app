@@ -13,6 +13,19 @@ public class SunglassMaterialManager : MonoBehaviour
     public void SetMaterial(int type, int index)
     {
         Debug.Log(type + " " + index);
+
+        if (type == 1)
+        {
+            faceRig.frameMat = frameMaterials[index].material;
+        }else if (type == 2)
+        {
+            faceRig.lensMat = lensMaterials[index].material;
+        }
+        else if (type == 3)
+        {
+            faceRig.armMat = armMaterials[index].material;
+        }
+
         faceRig.isMatRefresh = true;
     }
 }
