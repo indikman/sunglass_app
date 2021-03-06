@@ -6,6 +6,7 @@ TagManager:
   tags:
   - headrig
   - FacePrefabManager
+  - SunglassMatManager
   layers:
   - Default
   - TransparentFX

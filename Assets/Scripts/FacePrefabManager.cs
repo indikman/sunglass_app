@@ -5,7 +5,9 @@ using UnityEngine;
 public class FacePrefabManager : MonoBehaviour
 {
 
-    
+    public Material frameMat, armMat, lensMat;
+
+    public bool isMatRefresh = false;
 
 
     void Awake()
