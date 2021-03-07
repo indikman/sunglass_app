@@ -8,6 +8,6 @@ Works with Android devices with AR Core support and iOS devices with ARKit and t
 
 Following is a sample showcase of the app running on a Samsung Galaxy Note 20 Ultra
 
-![preview](https://media.giphy.com/media/3COCExBnTQmtNPchBI/giphy.gif)
+![preview](https://imgur.com/GW4kNb8)
 
 [© Indika Wijesooriya ](https://www.wijesooriya.com)
