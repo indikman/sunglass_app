@@ -8,7 +8,7 @@ public class SunglassMaterialManager : MonoBehaviour
 
     public sunglassMaterial[] frameMaterials;
     public sunglassMaterial[] lensMaterials;
-    public sunglassMaterial[] armMaterials;
+    //public sunglassMaterial[] armMaterials; // Use this if any additional materials are used other than frame materials
 
     public void SetMaterial(int type, int index)
     {
@@ -23,7 +23,7 @@ public class SunglassMaterialManager : MonoBehaviour
         }
         else if (type == 3)
         {
-            faceRig.armMat = armMaterials[index].material;
+            faceRig.armMat = frameMaterials[index].material;
         }
 
         faceRig.isMatRefresh = true;

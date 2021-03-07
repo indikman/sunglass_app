@@ -9,6 +9,8 @@ public class FaceSizeManager : MonoBehaviour
     
     public TextMeshProUGUI transformUpdator;
     public TMP_InputField multiplierInput;
+
+    [HideInInspector]
     public bool isSettingsOpen = false;
 
     private Transform faceRigTransform;
@@ -115,6 +117,12 @@ public class FaceSizeManager : MonoBehaviour
         string value = JsonUtility.ToJson(faceRigValue);
 
         PlayerPrefs.SetString("FaceRigTransform", value);
+        Debug.Log(value);
+    }
+
+    public void setSettingsOpen(bool value)
+    {
+        isSettingsOpen = value;
     }
 
     void Update()

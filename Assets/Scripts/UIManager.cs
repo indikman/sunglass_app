@@ -2,86 +2,64 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    private SunglassMaterialManager sunglassMaterials;
-    private GameObject referenceFaceRig;
-    private FacePrefabManager faceRig;
+    
 
     public Transform buttonParent;
     public GameObject buttonPrefab;
 
-    // Start is called before the first frame update
+    public TextMeshProUGUI btn_frame, btn_arms, btn_lens;
+    public Color highlightedColour, normalColour;
+
+    private SunglassMaterialManager sunglassMaterials;
+
+    private GameObject tempButtonObj;
+    private MaterialButton tempButton;
+    private sunglassMaterial[] materials;
+
+    
     void Start()
     {
-        referenceFaceRig = GameObject.FindGameObjectWithTag("FacePrefabManager");
-        faceRig = referenceFaceRig.GetComponent<FacePrefabManager>();
-
         sunglassMaterials = GameObject.FindGameObjectWithTag("SunglassMatManager").GetComponent<SunglassMaterialManager>();
 
         LoadMaterials(1);
+        SetButtonHighlight(btn_frame);
     }
 
-    GameObject tempButtonObj;
-    MaterialButton tempButton;
-    sunglassMaterial[] materials;
+
+    public void SetButtonHighlight(TextMeshProUGUI selectedButton)
+    {
+        btn_arms.color = normalColour;
+        btn_frame.color = normalColour;
+        btn_lens.color = normalColour;
+
+        selectedButton.color = highlightedColour;
+    }
 
     public void LoadMaterials(int value) // 1 - frame, 2 - lens, 3 - arms
     {
-        foreach(Transform obj in buttonParent.GetComponentInChildren<Transform>())
+        //Clear all the buttons in the scrollview
+        foreach(Transform child in buttonParent.transform)
         {
-            Destroy(obj.gameObject);
+            Destroy(child.gameObject);
         }
 
-        
 
 
         if (value == 1)
         {
             materials = sunglassMaterials.frameMaterials;
-            //for (int i = 0; i < sunglassMaterials.frameMaterials.Length; i++)
-            //{
-            //    tempButtonObj = Instantiate(buttonPrefab, buttonParent);
-            //    tempButton = tempButtonObj.GetComponent<Button>();
-            //    tempButtonRenderer = tempButtonObj.GetComponent<SpriteRenderer>();
-
-            //    tempButton.onClick.RemoveAllListeners();
-            //    tempButton.onClick.AddListener(()=>{ SetMaterial(value, i); });
-            //    tempButtonRenderer.color = sunglassMaterials.frameMaterials[i].tintColour;
-            //    tempButtonRenderer.sprite = sunglassMaterials.frameMaterials[i].buttonTexture;
-            //}
         }
         else if (value == 2)
         {
             materials = sunglassMaterials.lensMaterials;
-            //for (int i = 0; i < sunglassMaterials.lensMaterials.Length; i++)
-            //{
-            //    tempButtonObj = Instantiate(buttonPrefab, buttonParent);
-            //    tempButton = tempButtonObj.GetComponent<Button>();
-            //    tempButtonRenderer = tempButtonObj.GetComponent<SpriteRenderer>();
-
-            //    tempButton.onClick.RemoveAllListeners();
-            //    tempButton.onClick.AddListener(() => { SetMaterial(value, i); });
-            //    tempButtonRenderer.color = sunglassMaterials.lensMaterials[i].tintColour;
-            //    tempButtonRenderer.sprite = sunglassMaterials.lensMaterials[i].buttonTexture;
-            //}
-
         }
         else if (value == 3)
         {
-            materials = sunglassMaterials.armMaterials;
-            //for (int i = 0; i < sunglassMaterials.armMaterials.Length; i++)
-            //{
-            //    tempButtonObj = Instantiate(buttonPrefab, buttonParent);
-            //    tempButton = tempButtonObj.GetComponent<Button>();
-            //    tempButtonRenderer = tempButtonObj.GetComponent<SpriteRenderer>();
-
-            //    tempButton.onClick.RemoveAllListeners();
-            //    tempButton.onClick.AddListener(() => { SetMaterial(value, i); });
-            //    tempButtonRenderer.color = sunglassMaterials.armMaterials[i].tintColour;
-            //    tempButtonRenderer.sprite = sunglassMaterials.armMaterials[i].buttonTexture;
-            //}
+            materials = sunglassMaterials.frameMaterials;
         }
 
         for (int i = 0; i < materials.Length; i++)
@@ -90,10 +68,6 @@ public class UIManager : MonoBehaviour
             tempButton = tempButtonObj.GetComponent<MaterialButton>();
 
             tempButton.SetupButton(materials[i].buttonTexture, materials[i].tintColour, value, i);
-
-            //tempButton.onClick.AddListener(() => { SetMaterial(value, i); });
-            //tempButtonRenderer.color = materials[i].tintColour;
-            //tempButtonRenderer.sprite = materials[i].buttonTexture;
         }
 
         

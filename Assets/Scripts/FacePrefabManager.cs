@@ -10,19 +10,17 @@ public class FacePrefabManager : MonoBehaviour
     public bool isMatRefresh = false;
 
 
-    void Awake()
+    void Start()
     {
         if (PlayerPrefs.HasKey("FaceRigTransform"))
         {
             FaceRigTransform faceRigValue = JsonUtility.FromJson<FaceRigTransform>(PlayerPrefs.GetString("FaceRigTransform"));
+            Debug.Log(faceRigValue.position + " " + faceRigValue.rotation + " " + faceRigValue.scale);
 
-            if (faceRigValue != null)
-            {
-                gameObject.transform.localPosition = faceRigValue.position;
-                gameObject.transform.localEulerAngles = faceRigValue.rotation;
-                gameObject.transform.localScale = faceRigValue.scale;
-
-            }
+            gameObject.transform.localPosition = faceRigValue.position;
+            gameObject.transform.localEulerAngles = faceRigValue.rotation;
+            gameObject.transform.localScale = faceRigValue.scale;
+            
         }
     }
 

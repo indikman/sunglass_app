@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class FaceRig : MonoBehaviour
 {
-    private GameObject referenceFaceRig;
-    private FacePrefabManager faceRig;
-
+    
     public Material frame, lens, arm_left, arm_right;
-
     public Renderer frameRend, lensRend, armLRend, armRRend;
 
-    
+    private GameObject referenceFaceRig;
+    private FacePrefabManager faceRig;
 
     void Start()
     {
@@ -21,7 +19,7 @@ public class FaceRig : MonoBehaviour
         RefreshMaterials();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         gameObject.transform.localPosition = referenceFaceRig.transform.localPosition;
